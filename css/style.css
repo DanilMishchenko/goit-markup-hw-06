@@ -115,6 +115,7 @@ header {
 
 .site-nav .link {
   color: var(--title-text-color);
+  transition: 250ms var(--time-function);
 }
 
 /* Контакты шапки */
@@ -148,6 +149,7 @@ header {
 .contacts-header .link {
   display: flex;
   align-items: center;
+  transition: 250ms var(--time-function);
 }
 
 /* Герой */
@@ -206,6 +208,7 @@ header {
 
 .backdrop {
   position: fixed;
+  z-index: 1;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -213,7 +216,7 @@ header {
 
   background-color: var(--backdrop-black-color);
   opacity: 1;
-  transition: opacity 500ms var(--time-function);
+  transition: opacity 250ms var(--time-function);
 }
 
 .backdrop.is-hidden {
@@ -225,7 +228,7 @@ header {
 .backdrop.is-hidden .modal {
   transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;
-  transition: transform 500ms var(--time-function), opacity 500ms var(--time-function);
+  transition: transform 250ms var(--time-function), opacity 500ms var(--time-function);
 }
 
 .modal {
@@ -244,7 +247,7 @@ header {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.modal button {
+.modal .close-button {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -259,17 +262,171 @@ header {
   fill: #000000;
   background-color: #ffffff;
   border: 1px solid var(--modal-close-button-border-color);
-  transition: fill 500ms var(--time-function);
+  transition: fill 250ms var(--time-function);
 }
 
-.callback {
+.modal-title {
+  display: block;
   margin-bottom: 12px;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 20px;
   line-height: 1.15;
-  text-align: center;
   letter-spacing: 0.03em;
   color: var(--title-text-color);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
+  height: 342px;
+}
+
+.modal-label {
+  position: relative;
+  margin-bottom: 10px;
+  color: var(--primary-text-color);
+}
+
+.modal-field {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
+}
+
+.modal-input,
+.modal-textarea {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  transition: color 250ms var(--time-function), border 250ms var(--time-function);
+}
+
+.modal-label .modal-input {
+  height: 40px;
+  padding: 12px 16px 12px 42px;
+}
+
+.modal-input:hover + .modal-icon,
+.modal input:focus + .modal-icon {
+  fill: var(--accent-color);
+}
+
+.modal-form .modal-input:hover,
+.modal-form .modal-input:focus,
+.modal-form .modal-input:focus-within,
+.modal-form .modal-textarea:hover,
+.modal-form .modal-textarea:focus {
+  border: 1px solid var(--accent-color);
+  outline: 0;
+}
+
+.modal-label .modal-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transition: color 250ms var(--time-function), border 250ms var(--time-function);
+}
+
+.modal-label .modal-textarea {
+  height: 120px;
+  padding: 12px 16px;
+  resize: none;
+}
+
+.modal-textarea::placeholder {
+  color: rgba(117, 117, 117, 0.5);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.modal-checkbox .icon-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 15px;
+  margin-right: 7px;
+  border-radius: 2px;
+  background-origin: border-box;
+  border: 2px solid var(--title-text-color);
+  background-color: transparent;
+  fill: transparent;
+
+  transition: border-color 250ms var(--time-function), background-color 250ms var(--time-function),
+    fill 250ms var(--time-function), box-shadow 250ms var(--time-function);
+}
+
+.modal-checkbox .visually-hidden:checked + .icon-checkbox {
+  background-origin: border-box;
+  background-color: var(--accent-color);
+}
+
+.modal .modal-checkbox {
+  margin-bottom: 30px;
+}
+
+.modal .modal-checkbox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-agreement .checkbox-link {
+  color: var(--accent-color);
+  text-decoration: underline;
+  margin-left: 7px;
+}
+
+.modal .modal-checkbox input:checked + .icon-checkbox {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  fill: var(--main-color);
+}
+
+.submit-button {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  min-width: 200px;
+  max-height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  border: 0px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  letter-spacing: 0.06em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  color: var(--main-color);
+  background-color: var(--accent-color);
+  transition: 250ms var(--time-function), background-color 250ms var(--time-function);
+}
+
+.checkbox-agreement {
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+  color: var(--primary-text-color);
 }
 
 /* Особенности */
@@ -315,8 +472,29 @@ header {
   display: flex;
 }
 
+.directions-list li {
+  position: relative;
+}
+
 .directions-list li:not(:last-child) {
   margin-right: 30px;
+}
+
+.direction-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--main-color);
+  background-color: rgba(47, 48, 58, 0.8);
 }
 
 /* Секция Наша Команда */
@@ -375,7 +553,24 @@ header {
   width: 44px;
   height: 44px;
   border-radius: 50%;
+
+  fill: var(--main-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: 250ms var(--time-function);
+}
+
+.team .social-icon a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
   fill: #afb1b8;
+  background-color: var(--main-color);
+  transition: 250ms var(--time-function), background-color 250ms var(--time-function);
 }
 
 .social-icon a:hover,
@@ -410,6 +605,7 @@ header {
   fill: #afb1b8;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: 250ms var(--time-function);
 }
 
 .client-list a:hover,
@@ -446,21 +642,30 @@ header {
 
 .fooder .addres {
   color: var(--main-color);
+  width: 231px;
 }
 
 .contacts-fooder a {
   color: var(--footer-contacts-text-color);
+  transition: 250ms var(--time-function);
 }
 
 .fooder .info {
-  margin-right: 86px;
+  margin-right: 70px;
 }
 
 .fooder .social-icon {
   display: flex;
 }
 
-.fooder .social-container p {
+.fooder .fooder-social {
+  width: 206px;
+  margin-left: 0;
+  margin-right: 93px;
+}
+
+.fooder .fooder-social p,
+.fooder .subscription p {
   margin-bottom: 20px;
   font-weight: 700;
   font-size: 14px;
@@ -470,15 +675,51 @@ header {
   color: var(--main-color);
 }
 
-.social-icon a {
+.subscription .subscription-form {
+  display: flex;
+}
+
+.subscribe-input {
+  width: 358px;
+  height: 50px;
+  margin-right: 12px;
+  padding-left: 16px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  outline: transparent;
+  color: var(--main-color);
+  background-color: transparent;
+}
+
+.subscribe-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: #afb1b8;
-  background-color: rgba(255, 255, 255, 0.1);
+  width: 200px;
+  height: 50px;
+  outline: transparent;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  letter-spacing: 0.06em;
+  color: var(--main-color);
+  background-color: var(--accent-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border-color: transparent;
+}
+
+.subscribe-icon {
+  margin-left: 10px;
 }
 
 /* Портфолио */
+
 .content-selector {
   display: flex;
   justify-content: center;
@@ -501,6 +742,7 @@ header {
   padding: 6px 22px;
   border: 0px;
   letter-spacing: 0.03em;
+  transition: 250ms var(--time-function), background-color 250ms var(--time-function);
 }
 
 .content-selector button:hover,
@@ -569,7 +811,7 @@ header {
   color: #fff;
   background-color: rgba(33, 150, 243, 0.9);
   transform: translateY(100%);
-  transition: transform 250ms;
+  transition: transform 250ms var(--time-function);
 }
 
 .project-link:hover .project-overlay,
